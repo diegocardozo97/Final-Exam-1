@@ -8,22 +8,20 @@ class App extends React.Component{
   constructor( props ){
     super( props );
     this.state = {
-      /*
-        Your code goes here
-      */
+      books: [],
+      zeroResults: false,
     }
   }
 
-  /* 
-    Your code goes here
-  */
+  onResults = (books) => {
+    this.setState({books, zeroResults: books.length === 0});
+  }
 
-  render(){
+  render() {
     return(
       <div>
-        {/* 
-          Your code goes here
-        */}
+        <BookForm onResults={this.onResults}/>
+        <Book books={this.state.books} zeroResults={this.state.zeroResults}/>
       </div>
     )
   }
