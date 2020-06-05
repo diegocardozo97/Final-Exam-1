@@ -37,10 +37,29 @@ const Movies = {
                 .catch( err => {
                     throw new Error( err );
                 });
-    }
-    /*
-        Your code goes here
-    */
+    },
+    getMovieByID: function(movie_ID) {
+        return moviesCollection.find(
+            {movie_ID}
+            ).then(movie => {
+                movie
+            }).catch(err => {
+                throw new Error(err);
+            })
+    },
+    removeActorFromMovieList = function(movie_ID, movie, actorId) {
+        const actorIndex = movie.actors.indexOf(actorId);
+        if (actorIndex === undefined) {
+            console.log("not fooound");
+        }
+        movie.actors.splice(actorIndex, 1);
+
+        return moviesCollection.updateOne({movie_ID}, movie)
+            .then(_ => movie)
+            .catch(err => {
+                throw new Error(err);
+            });
+    },
 }
 
 module.exports = {
