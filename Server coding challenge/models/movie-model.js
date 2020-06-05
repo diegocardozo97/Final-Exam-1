@@ -47,7 +47,7 @@ const Movies = {
                 throw new Error(err);
             })
     },
-    removeActorFromMovieList = function(movie_ID, movie, actorId) {
+    removeActorFromMovieList: function(movie_ID, movie, actorId) {
         const actorIndex = movie.actors.indexOf(actorId);
         if (actorIndex === undefined) {
             console.log("not fooound");
